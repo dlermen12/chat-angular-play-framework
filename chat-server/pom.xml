@@ -1,0 +1,211 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.denner</groupId>
+	<artifactId>chat-server</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>play2</packaging>
+
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<anorm.version>3.0.0-M1</anorm.version>
+		<play2.version>2.5.0</play2.version>
+		<play2-ebean.version>3.0.0</play2-ebean.version>
+		<play2-enhancer.version>1.1.0</play2-enhancer.version>
+		<scala.version>2.11.7</scala.version>
+	</properties>
+
+	<dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.easytesting/fest-assert -->
+		<dependency>
+			<groupId>org.easytesting</groupId>
+			<artifactId>fest-assert</artifactId>
+			<version>1.4</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play_2.11</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- only if using Anorm -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>anorm_2.11</artifactId>
+			<version>${anorm.version}</version>
+		</dependency>
+
+		<!-- only if using JDBC -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-jdbc_2.11</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- only if using JDBC evolutions -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-jdbc-evolutions_2.11</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- only if using Java -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-java_2.11</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- only if using Ebean -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-ebean_2.11</artifactId>
+			<version>${play2-ebean.version}</version>
+		</dependency>
+
+		<!-- only if using JPA -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-java-jpa_2.11</artifactId>
+			<version>${play2.version}</version>
+		</dependency>
+
+		<!-- only if using JPA -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<version>4.3.9.Final</version>
+			<exclusions>
+				<!-- required to avoid version downgrade from '1.4.01' to '1.0.b2' -->
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!-- default SLF4J logging implementation, can be replaced by other -->
+		<!-- see https://www.playframework.com/documentation/2.5.x/SettingsLogger 
+			for more info -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-logback_2.11</artifactId>
+			<version>${play2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- required for: "run", "start" and "dist" -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-netty-server_2.11</artifactId>
+			<version>${play2.version}</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<!-- only if enhancement is required -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-enhancer</artifactId>
+			<version>${play2-enhancer.version}</version>
+		</dependency>
+
+		<!-- only if there are JUnit tests in the project -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-test_2.11</artifactId>
+			<version>${play2.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- only if there are Specs2 tests in the project -->
+		<dependency>
+			<groupId>com.typesafe.play</groupId>
+			<artifactId>play-specs2_2.11</artifactId>
+			<version>${play2.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>${project.basedir}/app</sourceDirectory>
+		<testSourceDirectory>${project.basedir}/test</testSourceDirectory>
+		<resources>
+			<resource>
+				<directory>${project.basedir}/conf</directory>
+			</resource>
+			<resource>
+				<directory>${project.basedir}/public</directory>
+				<targetPath>public</targetPath>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<groupId>com.google.code.play2-maven-plugin</groupId>
+				<artifactId>play2-maven-plugin</artifactId>
+				<version>1.0.0-beta5</version>
+				<extensions>true</extensions>
+				<configuration>
+					<!-- if using controllers without dependency injection; default value 
+						is "injected" -->
+					<routesGenerator>static</routesGenerator>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.code.sbt-compiler-maven-plugin</groupId>
+				<artifactId>sbt-compiler-maven-plugin</artifactId>
+				<version>1.0.0-beta8</version>
+			</plugin>
+		</plugins>
+	</build>
+	<profiles>
+		<profile>
+			<id>eclipse</id>
+
+			<build>
+				<directory>${project.basedir}/target-eclipse</directory>
+
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<configuration>
+							<skipMain>true</skipMain>
+							<skip>true</skip>
+							<source>1.8</source> <!-- 1.8 for Play! 2.5+ -->
+							<target>1.8</target> <!-- 1.8 for Play! 2.5+ -->
+						</configuration>
+						<executions>
+							<execution>
+								<id>default-compile</id>
+								<goals>
+									<goal>compile</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>default-testCompile</id>
+								<goals>
+									<goal>testCompile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

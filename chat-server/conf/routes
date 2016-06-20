@@ -3,8 +3,8 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
-GET     /ws                         @controllers.WebSocketController.ws
+GET     /                           com.denner.controllers.Application.index()
+GET     /ws                         @com.denner.controllers.WebSocketController.ws
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

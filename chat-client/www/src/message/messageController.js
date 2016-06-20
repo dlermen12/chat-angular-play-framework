@@ -32,16 +32,17 @@
         }
 
         function openWs() {
-            messageService.openWs(sendInfo).then(null, failOpen, onMessage);
+            messageService.openWs(sendInfo, failOpen).then(null, failOpen, onMessage);
         }
 
         function sendInfo() {
-            messageService.sendUserInfo($rootScope.userDetails.userName, $rootScope.userDetails.pictureSrc);
+            messageService.sendUserInfo($rootScope.userDetails.userName, $rootScope.userDetails.pictureSrc, $rootScope.userDetails.email);
         }
 
         function failOpen() {
-            alert('falaha ao concetar no servidor.');
+            alert('Falha ao se concetar no servidor.');
         }
+
 
     }
 

@@ -30,7 +30,7 @@
             webSocket.send(message);
         }
 
-        function _ws(onOpen) {
+        function _ws(onOpen, onError) {
             var deferred = $q.defer();
             webSocket = new WebSocket($rootScope.baseUrl.replace("http", 'ws') + "ws");
 
@@ -41,6 +41,12 @@
             webSocket.onopen = function () {
                 onOpen();
             };
+
+            webSocket.onerror = function (error) {
+                if (onError) {
+                    onError();
+                }
+            }
 
             return deferred.promise;
         }

@@ -68,6 +68,7 @@
             $rootScope.userDetails = {};
             $rootScope.userDetails.userName = data.name;
             $rootScope.userDetails.pictureSrc = data.picture;
+            $rootScope.userDetails.email = data.email;
         }
 
         function handleError(response) {

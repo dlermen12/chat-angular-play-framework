@@ -1,4 +1,5 @@
 <div>
+    
     <div class="row">
         <div class="col-md-9">
             <textarea class="messages-area"  disabled="true" ng-model="messageShow">
@@ -6,15 +7,16 @@
         </div>
         <div class="col-md-3">
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="user in users">
+                <li class="list-group-item" ng-repeat="user in users |  orderBy:'userName'">
                     <img   class="user-picture" src="{{user.userPicture}}">
                     {{user.userName}}</li>
             </ul>
         </div>
     </div>
+    
     <div class="row">
         <div class="col-md-9">
-            <textarea ng-model="message" class="messages-area-input">
+            <textarea ng-model="message" class="messages-area-input" maxlength="1000">
             </textarea>
         </div>
         <div class="col-md-3">

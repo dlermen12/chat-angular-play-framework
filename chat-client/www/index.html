@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Chat </title>
+
+        <link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+
+
+        <script src="lib/angular/angular.min.js"></script>	
+        <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>	
+        <script src="lib/angular-oauth/src/js/angularOauth.js"></script>	
+        <script src="lib/angular-oauth/src/js/googleOauth.js"></script>	
+        <script src="lib/jquery/dist/jquery.min.js"></script>
+        <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- your app's js -->
+        <script src="src/app.js"></script>
+
+
+
+        <script src="src/home/homeConfig.js"></script>
+        <script src="src/home/homeController.js"></script>
+
+        <script src="src/login/loginConfig.js"></script>
+        <script src="src/login/loginService.js"></script>
+
+        <script src="src/message/messageConfig.js"></script>
+        <script src="src/message/messageController.js"></script>
+        <script src="src/message/messageService.js"></script>
+
+        
+    </head>
+
+    <body ng-app="chat">
+        <nav class="navbar navbar-default" ng-controller="homeCnt as cnt">
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Chat</a>
+                </div>
+                <div class="container-fluid">
+                    <p class="navbar-text navbar-right" ng-if="userDetails != null">
+                        <img class="user-picture" src="{{userDetails.pictureSrc}}">
+                        {{userDetails.userName}},
+                        <a href="" ng-click="logout()" class="navbar-link">sair</a>
+                    </p>
+                    <p class="navbar-text navbar-right" ng-if="userDetails == null">
+                        <a href="" ng-click="login()" class="navbar-link">Entrar</a>
+                    </p>
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div ui-view></div>
+        </div>
+    </body>
+</html>

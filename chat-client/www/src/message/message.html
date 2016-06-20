@@ -1,0 +1,24 @@
+<div>
+    <div class="row">
+        <div class="col-md-9">
+            <textarea class="messages-area"  disabled="true" ng-model="messageShow">
+            </textarea>
+        </div>
+        <div class="col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="user in users">
+                    <img   class="user-picture" src="{{user.userPicture}}">
+                    {{user.userName}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-9">
+            <textarea ng-model="message" class="messages-area-input">
+            </textarea>
+        </div>
+        <div class="col-md-3">
+            <a class="btn btn-primary buttton-sent" ng-click="sendMessage()" href=""> > </a>
+        </div>
+    </div>
+</div>

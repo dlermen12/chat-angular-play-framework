@@ -1,0 +1,24 @@
+/* Empty. Add your own CSS if you like */
+
+
+.user-picture{
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;	
+}
+
+.messages-area{
+    width: 100%;
+    height: 350px;
+}
+
+.messages-area-input{
+    width: 100%;
+    height: 100px;
+}
+
+.buttton-sent{
+    width: 100%;
+    height: 100px;
+    line-height: 6;
+}
